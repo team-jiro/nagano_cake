@@ -1,0 +1,12 @@
+class CreateOrderItems < ActiveRecord::Migration[6.1]
+  def change
+    create_table :order_items do |t|
+
+      t.integer :amount, null: false, default: ""
+      t.integer :tax_included_price, null: false, default: ""
+      t.integer :crafting_status, null: false, default: 0
+      
+      t.timestamps
+    end
+  end
+end
