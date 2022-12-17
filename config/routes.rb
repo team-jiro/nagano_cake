@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   namespace :public do
     get 'ships/index'
     get 'ships/edit'
@@ -19,6 +20,10 @@ Rails.application.routes.draw do
     get 'items/index'
     get 'items/show'
   end
+
+  get 'homes/top'
+  get 'homes/about'
+
   namespace :admin do
     get 'orders/show'
   end
