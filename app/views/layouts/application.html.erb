@@ -9,14 +9,15 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
+
   <body>
+    <%= render 'layouts/header' %>
     <%= yield %>
     <footer>
     <div class="container mt-5">
   	<div class="row">
     	<div class="mx-auto">
-  
+
     	</div>
     </div>
   </div>
