@@ -60,3 +60,4 @@ gem "font-awesome-sass"
 
 gem 'kaminari','~> 1.2.1'
 
+gem 'pry-rails'
