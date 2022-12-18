@@ -13,8 +13,8 @@
       <% @orders.each do |order| %>
       <tr>
         <td><%= order.created_at %></td>
-        <td><%= customer.full_name %></td>
-        <td><%= order.order_item.count %></td>
+        <td><%= order.customer.full_name %></td>
+        <td><%= order.order_items.count %></td>
         <td><%= order.status %></td>
       </tr>
       <% end %>
