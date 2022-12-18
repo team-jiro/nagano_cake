@@ -1,25 +1,21 @@
 Rails.application.routes.draw do
 
-# 顧客側
-  namespace :public do
-
+  # 顧客側
+  scope module: :public do
     root to: "homes#top"
     get "/about" => "homes#about", as: "about"
-
     resources :ships, except: [:new, :show]
-    end
-
     resources :orders,only: [:new, :create, :index, :show] do
-    collection do
+      collection do
         post "confirm"
         get "complete"
       end
     end
 
     resources :cart_items, only: [:index, :create, :update, :destroy] do
-    collection do
-          delete "destroy_all"
-        end
+      collection do
+        delete "destroy_all"
+      end
     end
 
     resource :customers, only: [:show, :edit, :update] do
@@ -29,6 +25,7 @@ Rails.application.routes.draw do
 
     resources :items, only: [:index, :show] do
     end
+  end
 
   # 管理者側
   namespace :admin do
@@ -38,13 +35,18 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :show, :update]
   end
 
- devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-}
-  devise_for :customers,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
+  # 管理者認証用
+  # URL /admin/sign_in ...
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
+  }
+
+  # 顧客認証用
+  # URL /customers/sign_in ...
+  devise_for :customers, skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
