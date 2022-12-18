@@ -20,13 +20,13 @@ class Public::SessionsController < Devise::SessionsController
 
   protected
 
-    def after_sign_in_path_for(resource)
-      homes_top_path
-    end
+  def after_sign_in_path_for(resource)
+    homes_top_path
+  end
 
-    def after_sign_out_path_for(resource)
-      homes_top_path
-    end
+  def after_sign_out_path_for(resource)
+    homes_top_path
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
