@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
+  root to: "homes#top"
+  get "/about" => "homes#about", as: "about"
+
   # 顧客側
   scope module: :public do
-    root to: "homes#top"
-    get "/about" => "homes#about", as: "about"
     resources :ships, except: [:new, :show]
 
     resources :orders,only: [:new, :create, :index, :show] do
