@@ -1,49 +1,41 @@
 Rails.application.routes.draw do
+  
+# 顧客側
+  namespace :public do
+    
+    root to: "homes#top"
+    get "/about" => "homes#about", as: "about"
+    
+    resources :ships, except: [:new, :show]
+    end
+    
+    resources :orders,only: [:new, :create, :index, :show] do
+    collection do
+        post "confirm"
+        get "complete"
+      end
+    end
+    
+    resources :cart_items, only: [:index, :create, :update, :destroy] do
+    collection do
+          delete "destroy_all"
+        end
+    end
+    
+    resource :customers, only: [:show, :edit, :update] do
+      get "unsubscribe"
+      patch "withdraw"
+    end
+    
+    resources :items, only: [:index, :show] do
+    end
 
-  namespace :public do
-    get 'ships/index'
-    get 'ships/edit'
-  end
-  namespace :public do
-    get 'orders/new'
-    get 'orders/index'
-    get 'orders/show'
-  end
-  namespace :public do
-    get 'cart_items/index'
-  end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
-  end
-
-  get 'homes/top'
-  get 'homes/about'
-
+  # 管理者側
   namespace :admin do
-    get 'orders/show'
-  end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  namespace :admin do
-    get 'items/new'
-    get 'items/edit'
-    get 'items/index'
-    get 'items/show'
+    resources :items, except: [:destroy]
+    resources :genres, except: [:show, :destroy, :new]
+    resources :customers, except: [:new, :create, :destroy]
+    resources :orders, only: [:index, :show, :update]
   end
   
  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
@@ -53,5 +45,6 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
