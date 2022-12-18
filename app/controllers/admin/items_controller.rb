@@ -14,9 +14,13 @@ class Admin::ItemsController < ApplicationController
       flash[:alert] = "エラーが発生しました。"
       render :new
     end
+  end
 
+  def index
+    @items = Item.all
+  end
 
-　def show
+  def show
     @item = Item.find(params[:id])
   end
 
@@ -32,7 +36,7 @@ class Admin::ItemsController < ApplicationController
     redirect_to admin_item_path(item.id)
   end
 
-   private
+  private
   def item_params
     params.require(:item).permit(:name, :explanation, :price, :image, :category_id, :is_active)
   end
