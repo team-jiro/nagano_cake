@@ -4,7 +4,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new
     @items = Item.all
   end
-  
+
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -14,8 +14,8 @@ class Admin::ItemsController < ApplicationController
       flash[:alert] = "エラーが発生しました。"
       render :new
     end
-  
-  
+
+
 　def show
     @item = Item.find(params[:id])
   end
@@ -31,7 +31,7 @@ class Admin::ItemsController < ApplicationController
     flash[:notice] = "編集完了。"
     redirect_to admin_item_path(item.id)
   end
-  
+
    private
   def item_params
     params.require(:item).permit(:name, :caption, :price, :image, :category_id, :is_active)
