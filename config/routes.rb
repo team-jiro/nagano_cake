@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
 
+  root to: "homes#top"
+  get "/about" => "homes#about", as: "about"
+
   # 顧客側
   scope module: :public do
-    root to: "homes#top"
-    get "/about" => "homes#about", as: "about"
     resources :ships, except: [:new, :show]
     resources :orders,only: [:new, :create, :index, :show] do
       collection do
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
 
   # 管理者側
   namespace :admin do
+    get "/" => "homes#top"
     resources :items, except: [:destroy]
     resources :genres, except: [:show, :destroy, :new]
     resources :customers, except: [:new, :create, :destroy]
