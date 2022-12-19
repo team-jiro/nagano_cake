@@ -17,11 +17,12 @@
         </tr>
         <tr>
           <th>商品説明</th>
-          <td><%= f.text_area :caption %></td>
-          
+          <td><%= f.text_area :explanation %></td>
+
         </tr>
         <tr>
           <th>ジャンル</th>
+          <td><%= f.collection_select :genre_id, @genres, :id, :name %></td>
         <tr>
           <th>税抜き価格</th>
           <td><%= f.text_field :price %>円</td>

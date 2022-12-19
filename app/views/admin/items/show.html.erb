@@ -2,7 +2,7 @@
   <h3>商品詳細</h3>
   <div class="row">
     <div class="col-md-4">
-      
+
     </div>
     <div class="col-md-5">
       <table class="table cart_items">
@@ -12,15 +12,15 @@
         </tr>
         <tr>
           <th>商品説明</th>
-          <td><%= @item.caption %></td>
+          <td><%= @item.explanation %></td>
         </tr>
         <tr>
           <th>ジャンル</th>
-          <td><%= @item.category.name %></td>
+          <td><%= @item.genre.name %></td>
         </tr>
         <tr>
           <th>税込み価格<br>（税抜価格）</th>
-          <td><%= @item.add_tax_price.to_s(:delimited) %> (<%= @item.price.to_s(:delimited) %>)</td>
+          <td><%= @item.price.to_s(:delimited) %> (<%= @item.price.to_s(:delimited) %>)</td>
         </tr>
         <tr>
           <th>販売ステータス</th>
