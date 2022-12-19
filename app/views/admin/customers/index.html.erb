@@ -13,11 +13,11 @@
       <% @customers.each do |customer| %>
         <tr>
           <td><%= customer.id %></td>
-          <td><%= customer.full_name %></td>
+          <td><%= link_to customer.full_name, admin_customer_path(customer.id) %></td>
           <td><%= customer.email %></td>
-          <td><%= f.select :is_deleted, [['退会',true],['有効',false]] %></td>
+          <td><%= customer.is_deleted ? '退会' : '有効' %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-<%= paginate @customers %>
+<%#= paginate @customer %>

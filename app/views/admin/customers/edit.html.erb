@@ -1,21 +1,25 @@
-<% @customers.each do |customer| %>
-  <h4><%= customer.full_name %>さんの会員情報編集</h4>
-<% end %>
+<h4><%= @customer.full_name %>さんの会員情報編集</h4>
 
 <%= form_with model: @customer, url: admin_customer_path do |f| %>
   <label for="inputName">氏名</label>
     <%= f.text_field :last_name, autofocus: true, id:"inputLastName" %>
-    <%= f.text_field :first_name, id:"inputFirstName" %>
+    <%= f.text_field :first_name, id:"inputFirstName" %></br>
   <label for="inputName">フリガナ</label>
     <%= f.text_field :last_name_kana, id:"inputLastNameKana" %>
-    <%= f.text_field :first_name_kana, id:"inputFirstNameKana" %>
+    <%= f.text_field :first_name_kana, id:"inputFirstNameKana" %></br>
   <label for="inputPostCode">郵便番号</label>
-    <%= f.text_field :post_code, id:"inputPostCode" %>
+    <%= f.text_field :post_code, id:"inputPostCode" %></br>
   <label for="inputAddress">住所</label>
-    <%= f.text_field :address, id:"inputAddress" %>
+    <%= f.text_field :address, id:"inputAddress" %></br>
   <label for="inputPhoneNumber">電話番号</label>
-    <%= f.text_field :phone_number, id:"inputPhoneNumber" %>
+    <%= f.text_field :phone_number, id:"inputPhoneNumber" %></br>
   <label for="inputEmail">メールアドレス</label>
-    <%= f.text_field :email, id:"inputEmail" %>
-  <%#= "会員ステータスまだできてないです" 18.dec %>
+    <%= f.text_field :email, id:"inputEmail" %></br>
+  <label for="inputIsDeleted">会員ステータス</label>
+    <%= f.radio_button :is_deleted, :false %>
+    <%= f.label :is_deleted, "有効" %>
+    <%= f.radio_button :is_deleted, :true %>
+    <%= f.label :is_deleted, "退会" %></br>
+  <%= f.submit "変更を保存", class: "btn btn-success" %>
+<% end %>
   
