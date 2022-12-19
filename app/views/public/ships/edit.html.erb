@@ -1,2 +1,26 @@
-<h1>Public::Ships#edit</h1>
-<p>Find me in app/views/public/ships/edit.html.erb</p>
+<div class="container mx-auto">
+  <h3>配送先編集</h3>
+
+  <div class="row">
+    <%= form_with model: @ship do |f| %>
+      <div class="col">
+        <%= render "public/shared/error_messages", resource: @ship %>
+      </div>
+      <table>
+        <tr>
+          <th>郵便番号(ハイフンなし)</th>
+          <td><%= f.text_field :post_code %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td class="lg-5"><%= f.text_field :address %></td>
+        </tr>
+        <tr>
+          <th>宛名</th>
+          <td><%= f.text_field :name %></td>
+          <td><%= f.submit "変更内容を保存", class: 'btn btn-success' %></td>
+        </tr>
+      </table>
+    <% end %>
+  </div>
+</div>
