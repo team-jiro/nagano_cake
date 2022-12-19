@@ -1,44 +1,33 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-2">
-      <h3>商品一覧</h3>
-    </div>
+<h3>商品一覧</h3>
 
-
-    <!--colのサイズ設定-->
-    <div class="col-md-1 offset-md-9">
-      <%= link_to new_admin_item_path do %>
-        <i class="fas fa-plus-circle fa-3x"></i>
-      <% end %>
-    </div>
-  </div>
-
-    <div class="row">
-
-      <table class="table cart_items">
-          <tr>
-            <th class="col-md-1">商品ID</th>
-            <th class="col-md-3">商品名</th>
-            <th class="col-md-2">税抜価格</th>
-            <th class="col-md-2">ジャンル</th>
-            <th class="col-md-2">ステータス</th>
-          </tr>
-
-          <% @items.each do |item| %>
-          <tr>
-            <td class="col-md-1"><%= item.id %></td>
-            <td class="col-md-3"><%= link_to item.name, admin_item_path(item.id) %></td>
-            <td class="col-md-2"><%= item.price %></td>
-            <td class="col-md-2"><%= item.category.name %></td>
-            <td class="col-md-2"><%= item.is_active ? "販売中" : "販売停止中" %></td>
-          </tr>
-          <% end %>
-      </table>
-
-
-      <!--ページング記載-->
-
-    </div>
-    </div>
-  </div>
+<!--colのサイズ設定-->
+<div class="col-md-1 offset-md-9">
+  <%= link_to new_admin_item_path do %>
+    <i class="fas fa-plus-circle fa-3x"></i>
+  <% end %>
 </div>
+
+<table class="table cart_items">
+  <thead>
+    <tr>
+      <th class="col-md-1">商品ID</th>
+      <th class="col-md-3">商品名</th>
+      <th class="col-md-2">税抜価格</th>
+      <th class="col-md-2">ジャンル</th>
+      <th class="col-md-2">ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td class="col-md-1"><%= item.id %></td>
+        <td class="col-md-3"><%= link_to item.name, admin_item_path(item.id) %></td>
+        <td class="col-md-2"><%= item.price %></td>
+        <td class="col-md-2"><%= item.category.name %></td>
+        <td class="col-md-2"><%= item.is_active ? "販売中" : "販売停止中" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+    <!--ページング記載-->
