@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h3>注文履歴一覧</h3>
+      <h3>注文履歴詳細</h3>
       <table class="orders">
         <tr>
           <th>注文日</th>
@@ -10,7 +10,7 @@
         <tr>
           <!--データから入力-->
           <th>配送先</th>
-          <td><%= @order.address %></td>
+          <td><%= @order.shipping_address %></td>
         </tr>
         <tr>
           <th>支払方法</th>
@@ -36,7 +36,7 @@
         </tr>
         <tr>
           <th>ご請求額</th>
-          <td><%= @order.total_price + @order.postage %></td>
+          <td><%#= @order.billing_amount + @order.shipping_cost %></td>
         </tr>
       </table>
     </div>
@@ -59,7 +59,7 @@
           <tr>
             <td><%= order_item.item.name %></td>
             <td><%= order_item.price %></td>
-            <td><%= order_item.smount %></td>
+            <td><%= order_item.amount %></td>
             <td><%= order_item.price * order_item.amount %></td>
           </tr>
           <% end %>

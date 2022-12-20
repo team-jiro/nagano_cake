@@ -26,11 +26,8 @@ class Public::OrdersController < ApplicationController
       @order.shipping_name = @address.name
 
     elsif params[:order][:selected_address] == "3"
-
       @order = Order.new(order_params)
-      # @order.post_code = @address.post_code
-      # @order.address = @address.address
-      # @order.name = @address.name
+     
     end
   end
 
@@ -44,9 +41,8 @@ class Public::OrdersController < ApplicationController
     cart_items.each do |cart_item|
       @billing_amount += cart_item.subtotal
     end
-
-    @order.postage = @shipping_cost
-    @order.total_price = @billing_amount
+    
+   
 
     if @order.save
       cart_items.each do |cart|
@@ -54,7 +50,7 @@ class Public::OrdersController < ApplicationController
         order_item.item_id = cart.item_id
         order_item.order_id = @order.id
         order_item.amount = cart.amount
-        order_item.price = cart.item.add_tax_price
+        order_item.price = cart.item.tax_included_price
         order_item.save
       end
        redirect_to complete_orders_path
@@ -77,11 +73,11 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @orders = OrderItem.find(params[:id])
+    
   end
 private
   def order_params
-    params.require(:order).permit(:payment_method, :shipping_postal_code, :shipping_address, :shipping_name)
+    params.require(:order).permit(:payment_method, :shipping_postal_code, :shipping_address, :shipping_name, :billing_amount)
   end
 end
 
