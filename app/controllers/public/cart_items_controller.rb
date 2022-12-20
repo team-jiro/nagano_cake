@@ -2,7 +2,7 @@ class Public::CartItemsController < ApplicationController
  before_action :authenticate_customer!
 
   def index
-    @cart_items = CartItem.where(customer:current_customer)
+    @cart_items = CartItem.where(customer_id:current_customer)
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
   end
 
@@ -18,33 +18,33 @@ class Public::CartItemsController < ApplicationController
       else
         @item = Item.find(params[:cart_item][:item_id])
         @cart_item = CartItem.new
-        render "customer/items/show" #商品一覧へ遷移
+        render items_path #商品一覧へ遷移
       end
   end
 
   def update
     @cart_item = CartItem.find(params[:id])
-    @cart_item.update(quantity: params[:cart_item][:quantity].to_i)
+    @cart_item.update(amount: params[:cart_item][:amount].to_i)
     flash[:notice] = "#{@cart_item.item.name}の数量を変更しました。"
-    redirect_to customer_cart_items_path
+    redirect_to cart_items_path
   end
 
   def destroy
     @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
-    redirect_to customer_cart_items_path
+    redirect_to cart_items_path
   end
 
   def all_destroy
     @cart_items = current_customer.cart_items
     @cart_items.destroy_all
-    redirect_to customer_cart_items_path
+    redirect_to cart_items_path
   end
 
   private
 
   def params_cart_item
-    params.require(:cart_item).permit(:quantity, :item_id)
+    params.require(:cart_item).permit(:amount, :item_id)
   end
 
 end
