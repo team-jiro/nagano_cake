@@ -33,11 +33,11 @@
         </tr>
         <tr>
           <th>商品合計</th>
-          <td><%= @total.to_s(:delimited) %>円</td>
+          <td><%= @billing_amount.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <th>請求金額</td>
-          <td><%= (@shipping_cost + @total).to_s(:delimited) %>円</td>
+          <td><%= (@shipping_cost + @billing_amount).to_s(:delimited) %>円</td>
         </tr>
 
       </table>
@@ -48,12 +48,12 @@
 
   <div class="row">
     <h5>支払方法</h5>
-    <%= @order.payment_method_i18n %>
+    <%= @order.payment_method %>
 
   </div>
   <div class="row">
     <h5>お届け先</h5>
-    <%= @order.full_address %>
+    <%= @order.shipping_address %>
 
   </div>
 
