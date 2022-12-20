@@ -1,2 +1,24 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container">
+  <h1>※トップページまだ未完成です</h1>
+  <div class="row">
+    <div class="col">
+      ようこそ、ながのCAKEへ！<br>
+      このサイトは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品の閲覧はできますが、<br>
+      購入には会員登録が必要になります。<br>
+    </div>
+  </div>
+  <br>
+  <h2>新着商品</h2>
+  <div class="row">
+    <% @new_4_items.each do |item| %>
+      id: <%= item.id %> ; created_at: <%= item.created_at %> ; name: <%= item.name %><br>
+    <% end %>
+  </div>
+  <div class="row">
+    <%= link_to items_path do %>
+      <div class="pull-right">全ての商品を見る ></div>
+    <% end %>
+  </div>
+
+</div>
