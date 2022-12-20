@@ -11,21 +11,21 @@ class Public::OrdersController < ApplicationController
       @billing_amount += cart_item.subtotal
     end
 
-    if params[:order][:shipping_address] == "1"
+    if params[:order][:selected_address] == "1"
       @order = Order.new(order_params)
-      @order.post_code = current_customer.post_code
-      @order.address = current_customer.address
-      @order.name = current_customer.full_name
+      @order.shipping_postal_code = current_customer.post_code
+      @order.shipping_address = current_customer.address
+      @order.shipping_name = current_customer.full_name
 
-    elsif params[:order][:shipping_address] == "2"
+    elsif params[:order][:selected_address] == "2"
 
       @order = Order.new(order_params)
       @address = Ship.find(params[:order][:customer_id])
-      @order.post_code = @address.post_code
-      @order.address = @address.address
-      @order.name = @address.name
+      @order.shipping_postal_code = @address.post_code
+      @order.shipping_address = @address.address
+      @order.shipping_name = @address.name
 
-    elsif params[:order][:shipping_address] == "3"
+    elsif params[:order][:selected_address] == "3"
 
       @order = Order.new(order_params)
       # @order.post_code = @address.post_code
@@ -81,7 +81,7 @@ class Public::OrdersController < ApplicationController
   end
 private
   def order_params
-    params.require(:order).permit(:payment_method, :post_code, :address, :name)
+    params.require(:order).permit(:payment_method, :shipping_postal_code, :shipping_address, :shipping_name)
   end
 end
 
