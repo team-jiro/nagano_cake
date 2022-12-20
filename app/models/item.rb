@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   has_many :order_items, dependent: :destroy
 
   def taxin_price #合計金額計算で使用
-        price*1.1
+    (price*1.1).floor
   end
 
   def get_image
