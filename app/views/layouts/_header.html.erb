@@ -1,57 +1,55 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container bg-secondary">
-      <a class="navbar-brand" href="/"><span>Nagano Cake</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-          <% if customer_signed_in? %>
-            <li class="nav-item">
-              <%= link_to 'マイページ', customers_path, method: :get, class: 'nav-link text-dark border rounded' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '商品一覧', items_path, method: :get, class: 'nav-link text-dark border rounded' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'カート', cart_items_path, method: :get, class: 'nav-link text-dark border rounded' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'nav-link text-dark border rounded' %>
-            </li>
-          <% elsif admin_signed_in? %>
-            <li class="nav-item">
-              <%= link_to '商品一覧', admin_items_path, method: :get, class: 'nav-link text-dark border rounded' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '会員一覧', admin_customers_path, method: :get, class: 'nav-link text-dark border rounded' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '注文履歴一覧', admin_path, method: :get, class: 'nav-link text-dark border rounded' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'ジャンル一覧', admin_genres_path, method: :get, class: 'nav-link text-dark border rounded' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-dark border rounded' %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%= link_to 'About', about_path, method: :get, class: 'nav-link text-dark border rounded' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '商品一覧', items_path, method: :get, class: 'nav-link text-dark border rounded' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to '新規登録', new_customer_registration_path, method: :get, class: 'nav-link text-dark border rounded' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'ログイン', new_customer_session_path, method: :get, class: 'nav-link text-dark border rounded' %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+<header class="shadow sticky-top">
+  <nav class="navbar navbar-expand-md navbar-light bg-light py-md-4">
+    <a class="navbar-brand" href="/"><span style="font-weight-normal">Nagano Cake</span> <i class="fas fa-utensils"></i></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        <% if customer_signed_in? %>
+          <li class="nav-item mr-1">
+            <%= link_to 'マイページ', customers_path, method: :get, class: 'nav-link text-secondary border rounded' %>
+          </li>
+          <li class="nav-item mr-1">
+            <%= link_to '商品一覧', items_path, method: :get, class: 'nav-link text-secondary border rounded' %>
+          </li>
+          <li class="nav-item mr-1">
+            <%= link_to 'カート', cart_items_path, method: :get, class: 'nav-link text-secondary border rounded' %>
+          </li>
+          <li class="nav-item mr-1">
+            <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'nav-link text-secondary border rounded' %>
+          </li>
+        <% elsif admin_signed_in? %>
+          <li class="nav-item mr-1">
+            <%= link_to '商品一覧', admin_items_path, method: :get, class: 'nav-link text-secondary border rounded' %>
+          </li>
+          <li class="nav-item mr-1">
+            <%= link_to '会員一覧', admin_customers_path, method: :get, class: 'nav-link text-secondary border rounded' %>
+          </li>
+          <li class="nav-item mr-1">
+            <%= link_to '注文履歴一覧', admin_path, method: :get, class: 'nav-link text-secondary border rounded' %>
+          </li>
+          <li class="nav-item mr-1">
+            <%= link_to 'ジャンル一覧', admin_genres_path, method: :get, class: 'nav-link text-secondary border rounded' %>
+          </li>
+          <li class="nav-item mr-1">
+            <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link text-secondary border rounded' %>
+          </li>
+        <% else %>
+          <li class="nav-item mr-1">
+            <%= link_to 'About', about_path, method: :get, class: 'nav-link text-secondary border rounded' %>
+          </li>
+          <li class="nav-item mr-1">
+            <%= link_to '商品一覧', items_path, method: :get, class: 'nav-link text-secondary border rounded' %>
+          </li>
+          <li class="nav-item mr-1">
+            <%= link_to '新規登録', new_customer_registration_path, method: :get, class: 'nav-link text-secondary border rounded' %>
+          </li>
+          <li class="nav-item mr-1">
+            <%= link_to 'ログイン', new_customer_session_path, method: :get, class: 'nav-link text-secondary border rounded' %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </nav>
 </header>
