@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <div>
-        <p><%= image_tag item.get_image, size:"100x100" %></p>
-        <p><%= @item.name %></p>
-        <p><%= @item.explanation %></p>
-        <p>¥ <%= (price * 1.1).floor %></p>
-        <%= form_with model: @cart_item do |f| %>
-          <p><%= f.select :amount, [1..5] %></p>
-        <% end %>
-        <p><%= link_to 'カートに入れる', cart_items_path %></p>
-      </div>
+    <div class="m-md-5 d-inline-block">
+      <p><%= image_tag @item.get_image, size:"300x200" %></p>
+    </div>
+    <div class="m-md-5">
+      <strong><%= @item.name %></strong>
+      <p class="mt-md-3"><%= @item.explanation %></p>
+      <p class="mt-md-5">¥ <%= @item.taxin_price.floor %>（税込）</p>
+      <%= form_with model: @cart_item do |f| %>
+        <p><%= f.select :amount, [1..5] %></p>
+      <% end %>
+      <p><%= link_to 'カートに入れる', cart_items_path, class: "btn btn-success" %></p>
     </div>
   </div>
 </div>
