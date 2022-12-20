@@ -6,11 +6,14 @@
     <div class="m-md-5">
       <strong><%= @item.name %></strong>
       <p class="mt-md-3"><%= @item.explanation %></p>
-      <p class="mt-md-5">¥ <%= @item.taxin_price.floor %>（税込）</p>
-      <%= form_with model: @cart_item do |f| %>
-        <p><%= f.select :amount, [1..5] %></p>
+      <p class="mt-md-5">¥ <%= @item.taxin_price.to_s(:delimited) %>（税込）</p>
+      <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+        <p>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <%= f.select :amount, *[1..10] %>
+        </p>
+        <p><%= f.submit 'カートに入れる', class: "btn btn-success" %></p>
       <% end %>
-      <p><%= link_to 'カートに入れる', cart_items_path, class: "btn btn-success" %></p>
     </div>
   </div>
 </div>

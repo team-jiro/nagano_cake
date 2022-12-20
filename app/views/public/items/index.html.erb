@@ -11,7 +11,7 @@
             <% end %>
           </p>
           <strong><%= item.name %></strong>
-          <p class="mt-md-2">¥ <%= item.taxin_price.floor %>（税込）</p>
+          <p class="mt-md-2">¥ <%= item.taxin_price.to_s(:delimited) %>（税込）</p>
         </div>
       <% end %>
     </div>
