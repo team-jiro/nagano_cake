@@ -15,13 +15,13 @@
           <% @orders.each do |order| %>
             <tr>
               <td><%= order.created_at.strftime("%Y/%m/%d") %></td>
-              <td><%= order.address %></td>
+              <td><%= order.shipping_address %></td>
               <td>
                 <% order.order_items.each do |order_item| %>
                   <%= order_item.item.name %><br />
                 <% end %>
               </td>
-              <td><%= (order.postage + order.total_price).to_s(:delimited) %></td>
+              <td><%#= (order.billing_amount+ order.shipping_cost).to_s(:delimited) %></td>
               <td><%= order.status_i18n %></td>
               <td><%= link_to "表示する", order_path(order), class: "btn btn-primary" %></td>
             </tr>
