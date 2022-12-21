@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     resources :genres, except: [:show, :destroy, :new]
     resources :customers, except: [:new, :create, :destroy]
     resources :orders, only: [:index, :show, :update]
+    resources :order_items, only: [:update]
+
   end
 
   # 管理者認証用
