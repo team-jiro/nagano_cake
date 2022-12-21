@@ -7,6 +7,18 @@ class Customer < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :ships, dependent: :destroy
 
+  # カラムの保存許可設定
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
+  validates :address, presence: true
+  validates :post_code, presence: true
+  validates :phone_number, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :password, presence: true
+
+
   # 会員フルネーム
   def full_name
     self.last_name + " " + self.first_name
