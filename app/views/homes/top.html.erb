@@ -1,24 +1,36 @@
-<div class="container">
-  <h1>※トップページまだ未完成です</h1>
-  <div class="row">
-    <div class="col">
-      ようこそ、ながのCAKEへ！<br>
+<div class="row mb-5">
+  <span>
+    <h2>ようこそ、ながのCAKE <i class="fas fa-utensils"></i> へ！</h2>
+    <p class="ml-5 my-3">
       このサイトは、ケーキ販売のECサイトになります。<br>
       会員でない方も商品の閲覧はできますが、<br>
-      購入には会員登録が必要になります。<br>
-    </div>
-  </div>
-  <br>
+      購入には会員登録が必要になります。
+    </p>
+  </span>
+</div>
+<div class="row mb-3">
   <h2>新着商品</h2>
-  <div class="row">
-    <% @new_4_items.each do |item| %>
-      id: <%= item.id %> ; created_at: <%= item.created_at %> ; name: <%= item.name %><br>
-    <% end %>
-  </div>
-  <div class="row">
-    <%= link_to items_path do %>
-      <div class="pull-right">全ての商品を見る ></div>
-    <% end %>
-  </div>
+</div>
 
+<!--Bootstrapの「カード」を使用-->
+<!--https://getbootstrap.jp/docs/4.5/components/card/#card-styles-->
+<div class="row">
+    <% @new_4_items.each do |item| %>
+      <%= link_to item_path(item), class: "col" do %>
+        <div class="card shadow">
+          <%= image_tag item.get_image, size: "200x100", class: "bd-placeholder-img card-img-top"  %>
+          <div class="card-body text-dark">
+            <h5 class="card-title"><%= item.name %></h5>
+            <!--<p class="card-text"></p>-->
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">¥ <%= item.taxin_price.to_s(:delimited) %>（税込）</small>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+</div>
+
+<div class="row my-4 pr-3">
+  <%= link_to '全ての商品を見る >', items_path, class: "ml-auto" %>
 </div>
