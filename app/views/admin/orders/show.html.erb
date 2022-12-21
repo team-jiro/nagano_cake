@@ -28,8 +28,8 @@
     </div>
     <div class="col-md-6">
       <p>
-        <%= @order.post_code %> <%= @order.address %><br>
-        <%= @order.name %>
+        <%= @order.shipping_address %> <%= @order.shipping_address %><br>
+        <%= @order.shipping_name %>
       </p>
     </div>
   </div>
@@ -52,7 +52,7 @@
     </div>
     <div class="col-md-6 d-flex clearfix">
     <!--ここの記述あやしい-->
-      <%= form_with model: @order, url: admin_orders_path(@order), local:true do |f| %>
+      <%= form_with model: @order, url: admin_order_path(@order), local:true do |f| %>
         <%= f.select :status, Order.statuses.keys.map { |k| [I18n.t("enums.order.status.#{k}"), k] } %>
         <%= f.submit "更新" %>
       <% end %>
@@ -72,14 +72,12 @@
         <% @order_items.each do |order_item| %>
           <tr>
             <td><%= order_item.item.name %></td>
-            <!--価格怪しい-->
-            <td><%= order_item.item.add_tax_price.to_s(:delimited) %></td>
+            <td><%= order_item.tax_included_price.to_s(:delimited) %></td>
             <td><%= order_item.amount %></td>
-            <!--価格怪しい-->
-            <td><%= (order_item.item.add_tax_price * order_item.amount).to_s(:delimited) %>円</td>
+            <td><%= (order_item.item.price * order_item.amount).to_s(:delimited) %>円</td>
             <td>
             <!--ここの記述怪しい-->
-              <%= form_with model: order_item, url: admin_order_item_path(order_item), local: true do |f| %>
+              <%= form_with model: order_item, url: admin_order_item_path, local: true do |f| %>
                 <%= f.select :crafting_status, OrderItem.crafting_statuses.keys.map { |k| [I18n.t("enums.order_item.crafting_status.#{k}"), k] } %>
                 <%= f.submit "更新", class: "" %>
               <% end %>

@@ -5,7 +5,7 @@ class Admin::OrdersController < ApplicationController
     @order_items = @order.order_items
     @total = 0
     @order_items.each do |order_item|
-      @total += order_item.item.add_tax_price * order_item.amount
+      @total += order_item.tax_included_price * order_item.amount
     end
   end
   
