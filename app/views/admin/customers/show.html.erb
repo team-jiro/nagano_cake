@@ -1,40 +1,56 @@
+<div><%= flash[:notice] %></div>
+
 <h4><%= @customer.full_name %>さんの会員詳細</h4>
-  <table>
+  <table class="table col-md-10 offset-md-1 table-borderless">
     <tbody>
       <tr>
-        <td>会員ID</td>
+        <th class="w-25 font-weight-normal">会員ID</th>
         <td><%= @customer.id %></td>
       </tr>
       <tr>
-        <td>氏名</td>
+        <th class="w-25 font-weight-normal">氏名</th>
         <td><%= @customer.last_name %> <%= @customer.first_name %></td>
       </tr>
       <tr>
-        <td>フリガナ</td>
+        <th class="w-25 font-weight-normal">フリガナ</th>
         <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
       </tr>
       <tr>
-        <td>郵便番号</td>
+        <th class="w-25 font-weight-normal">郵便番号</th>
         <td><%= @customer.post_code %></td>
       </tr>
       <tr>
-        <td>住所</td>
+        <th class="w-25 font-weight-normal">住所</th>
         <td><%= @customer.address %></td>
       </tr>
       <tr>
-        <td>電話番号</td>
+        <th class="w-25 font-weight-normal">電話番号</th>
         <td><%= @customer.phone_number %></td>
       </tr>
       <tr>
-        <td>メールアドレス</td>
+        <th class="w-25 font-weight-normal">メールアドレス</th>
         <td><%= @customer.email %></td>
       </tr>
       <tr>
-        <td>会員ステータス</td>
-        <td><%= @customer.is_deleted ? '退会' : '有効' %></td>
+        <th class="w-25 font-weight-normal">会員ステータス</th>
+        <td>
+          <% if @customer.is_deleted %>
+            <strong class="text-secondary">退会</strong>
+          <% else %>
+            <strong class="text-success">有効</strong>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td>
+          <a>
+            <%= link_to '編集する', edit_admin_customer_path(@customer.id), class: "btn btn-success" %>
+          </a>
+          <a class="pl-md-4">
+            <%= link_to '注文履歴一覧を見る', admin_customers_path, class: "btn btn-primary" %>
+          </a>
+        </td>
       </tr>
     </tbody>
   </table>
-
-<%= link_to '編集する', edit_admin_customer_path(@customer.id), class: "btn btn-success" %>
-<%= link_to '注文履歴一覧を見る', admin_customers_path, class: "btn btn-primary" %>
