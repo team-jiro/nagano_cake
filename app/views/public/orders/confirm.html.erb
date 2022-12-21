@@ -15,9 +15,9 @@
         <% @cart_items.each do |cart_item| %>
         <tr>
           <td><%= cart_item.item.name %></td>
-          <td><%= cart_item.item.add_tax_include_price.to_s(:delimited) %>円</td>
+          <td><%= cart_item.item.taxin_price.to_s(:delimited) %>円</td>
           <td><%= cart_item.amount %></td>
-          <td><%= cart_item.subtotal.to_s(:delimited) %>円</td>
+          <td><%= cart_item.sum_of_price.to_s(:delimited) %>円</td>
         </tr>
         <% end %>
       </table>
@@ -33,11 +33,11 @@
         </tr>
         <tr>
           <th>商品合計</th>
-          <td><%= @billing_amount.to_s(:delimited) %>円</td>
+          <td><%= @total.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <th>請求金額</td>
-          <td><%= (@shipping_cost + @billing_amount).to_s(:delimited) %>円</td>
+          <td><%= (@shipping_cost + @total).to_s(:delimited) %>円</td>
         </tr>
 
       </table>
@@ -61,8 +61,8 @@
     <%= f.hidden_field :shipping_address %>
     <%= f.hidden_field :shipping_postal_code %>
     <%= f.hidden_field :shipping_name %>
-    <%= f.hidden_field :billing_amount, :value =>@shipping_cost + @billing_amount %>
-    
+    <%= f.hidden_field :billing_amount, :value =>@shipping_cost + @total %>
+
 
     <%= f.submit "注文を確定する", class: 'btn btn-primary' %>
   <% end %>

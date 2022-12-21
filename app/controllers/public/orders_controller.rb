@@ -5,10 +5,10 @@ class Public::OrdersController < ApplicationController
   def confirm
     @cart_items = CartItem.all
     @shipping_cost = 800
-    @billing_amount = 0
+    @total = 0
 
     @cart_items.each do |cart_item|
-      @billing_amount += cart_item.subtotal
+      @total += cart_item.sum_of_price
     end
 
     if params[:order][:selected_address] == "1"
@@ -27,7 +27,7 @@ class Public::OrdersController < ApplicationController
 
     elsif params[:order][:selected_address] == "3"
       @order = Order.new(order_params)
-     
+
     end
   end
 
@@ -37,12 +37,11 @@ class Public::OrdersController < ApplicationController
 
 
     @shipping_cost = 800
-    @billing_amount = 0
+    @total = 0
     cart_items.each do |cart_item|
-      @billing_amount += cart_item.subtotal
+      @total += cart_item.sum_of_price
     end
-    
-   
+
 
     if @order.save
       cart_items.each do |cart|
@@ -50,7 +49,7 @@ class Public::OrdersController < ApplicationController
         order_item.item_id = cart.item_id
         order_item.order_id = @order.id
         order_item.amount = cart.amount
-        order_item.price = cart.item.tax_included_price
+        order_item.tax_included_price = cart.item.taxin_price
         order_item.save
       end
        redirect_to complete_orders_path
@@ -68,12 +67,13 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders = Order.where(customer_id: current_customer.id)
+    @total = 0
   end
 
 
   def show
     @order = Order.find(params[:id])
-    
+
   end
 private
   def order_params

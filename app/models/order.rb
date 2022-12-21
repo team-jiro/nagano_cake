@@ -1,4 +1,8 @@
 class Order < ApplicationRecord
+  
+  def subtotal
+    item.tax_included_price * amount
+  end
   belongs_to :customer
   has_many :order_items, dependent: :destroy
   enum payment_method: { credit_card: 0, transfer: 1 }
