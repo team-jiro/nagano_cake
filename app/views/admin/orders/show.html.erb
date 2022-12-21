@@ -77,7 +77,7 @@
             <td><%= (order_item.item.price * order_item.amount).to_s(:delimited) %>円</td>
             <td>
             <!--ここの記述怪しい-->
-              <%= form_with model: order_item, url: admin_order_item_path, local: true do |f| %>
+              <%= form_with model: order_item, url: admin_order_item_path(order_item), local: true do |f| %>
                 <%= f.select :crafting_status, OrderItem.crafting_statuses.keys.map { |k| [I18n.t("enums.order_item.crafting_status.#{k}"), k] } %>
                 <%= f.submit "更新", class: "" %>
               <% end %>
