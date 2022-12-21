@@ -1,9 +1,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">  <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script src="https://kit.fontawesome.com/96a43cceb0.js" crossorigin="anonymous"></script>
 
 <div class="container px-5 px-md-0 mt-5">
 
   <div class="row" style="margin-left: 0; margin-right: 0;">
-    <h3 class="d-inline animate__animated animate__shakeY" style="margin-bottom: 0;">ショッピングカート</h3>
+    <h3 class="d-inline animate__animated animate__rubberBand" style="margin-bottom: 0;">ショッピングカート<i class="fa-solid fa-cart-shopping"></i></h3>
     <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: "btn btn-outline-danger d-inline ml-auto", "data-confirm" => "カート内の商品を削除してもよろしいですか？"  %>
   </div>
 

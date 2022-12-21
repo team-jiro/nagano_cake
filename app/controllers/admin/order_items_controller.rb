@@ -13,7 +13,7 @@ class Admin::OrderItemsController < ApplicationController
   　　elsif @order.order_items.count ==  @order.order_items.where(making_status: "製作完了").count
 			  @order.update(order_status: 3) #「製作完了」と同時に注文ステータスを「発送準備中」に更新
       end
-		    redirect_to admin_order_item_path #注文詳細に遷移
+		    redirect_to admin_order_path(@order) #注文詳細に遷移
     end
 
 	  private
