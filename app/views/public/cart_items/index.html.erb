@@ -27,7 +27,7 @@
           <% end %>
           <%= cart_item.item.name %>
           </td>
-          <td class="border border-dark text-left align-middle"><%= cart_item.item.tax_included_price.to_s(:delimited) %></td>
+          <td class="border border-dark text-left align-middle"><%= cart_item.item.taxin_price.to_s(:delimited) %></td>
           <td class="border border-dark col-1 align-middle text-nowrap ">
             <%= form_with model: cart_item, url: cart_item_path(cart_item), method: :patch, class: "text-center", local: true do |f| %>
               <%= f.select :amount, *[1..10] %>
