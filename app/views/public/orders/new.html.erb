@@ -28,7 +28,7 @@
           <%= f.label :selected_address, "登録済住所から選択" %></section>
           <br>
           <section class="select">
-            <%= f.select :customer_id, options_from_collection_for_select(current_customer.ships.all, :id, :full_address) %>
+            <%= f.select :customer_id, options_from_collection_for_select(current_customer.ships.all, :id, :address) %>
           <section class="select">
         </div>
 
