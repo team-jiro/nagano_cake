@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :order_items, dependent: :destroy
 
-  def taxin_price #合計金額計算で使用
+  def tax_included_price
     (price*1.1).floor
   end
 

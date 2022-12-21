@@ -12,8 +12,9 @@ class Public::CartItemsController < ApplicationController
       if @update_cart_item.present? && @cart_item.valid? #一致してなければ実行
         @cart_item.amount += @update_cart_item.amount #既にカートにあった商品を新規カートに入れる
         @update_cart_item.destroy #元のカートを削除
+      end
 
-      elsif @cart_item.save #通常保存
+      if @cart_item.save #通常保存
         redirect_to cart_items_path #カート内アイテム一覧へ遷移
       else
         @item = Item.find(params[:cart_item][:item_id])
@@ -35,7 +36,7 @@ class Public::CartItemsController < ApplicationController
     redirect_to cart_items_path
   end
 
-  def all_destroy
+  def destroy_all
     @cart_items = current_customer.cart_items
     @cart_items.destroy_all
     redirect_to cart_items_path
