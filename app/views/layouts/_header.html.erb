@@ -5,6 +5,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <p class="py-3 m-auto">ようこそ、<%= current_customer.last_name %>さん！</p>
       <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
           <li class="nav-item mr-1">
