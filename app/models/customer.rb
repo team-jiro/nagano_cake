@@ -16,7 +16,6 @@ class Customer < ApplicationRecord
   validates :post_code, presence: true
   validates :phone_number, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true
 
 
   # 会員フルネーム

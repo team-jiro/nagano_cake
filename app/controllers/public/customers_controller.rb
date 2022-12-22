@@ -1,5 +1,5 @@
 class Public::CustomersController < ApplicationController
-  before_action :authenticate_customer!
+  #before_action :authenticate_customer!
 
   def show
     @customer = current_customer
@@ -24,6 +24,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def withdraw
+
     customer = current_customer
     customer.update(is_deleted: true)
     reset_session
