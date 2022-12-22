@@ -1,10 +1,10 @@
-<header class="shadow sticky-top">
-  <nav class="navbar navbar-expand-md navbar-light bg-light py-md-4">
-    <a class="navbar-brand" href="/"><span style="font-weight-normal">Nagano Cake</span> <i class="fas fa-utensils"></i></a>
+<header class="shadow sticky-top bg-light pb-md-2">
+  <nav class="navbar navbar-expand-md navbar-light py-0">
+    <a class="navbar-brand font-weight-normal" href="/">Nagano Cake <i class="fas fa-utensils"></i></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <div class="collapse navbar-collapse py-2" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
           <p class="my-auto">ようこそ、<%= current_customer.last_name %>さん！</p>
@@ -54,4 +54,14 @@
       </ul>
     </div>
   </nav>
+  <div class="row m-0">
+    <form class="form-inline ml-auto mr-4">
+      <div class="input-group">
+        <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+        </div>
+      </div>
+    </form>
+  </div>
 </header>
