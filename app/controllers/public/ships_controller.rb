@@ -1,4 +1,6 @@
 class Public::ShipsController < ApplicationController
+  before_action :authenticate_customer!
+
   def index
     @ship = Ship.new
     @ships = current_customer.ships
