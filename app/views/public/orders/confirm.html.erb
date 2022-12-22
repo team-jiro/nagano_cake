@@ -18,9 +18,9 @@
             <%= image_tag cart_item.item.get_image, size: '70x50' %>
             <%= cart_item.item.name %>
           </td>
-          <td class="align-middle"><%= cart_item.item.taxin_price.to_s(:delimited) %>円</td>
+          <td class="align-middle"><%= cart_item.item.taxin_price.to_s(:delimited) %></td>
           <td class="align-middle"><%= cart_item.amount %></td>
-          <td class="align-middle"><%= cart_item.sum_of_price.to_s(:delimited) %>円</td>
+          <td class="align-middle"><%= cart_item.sum_of_price.to_s(:delimited) %></td>
         </tr>
         <% end %>
       </tbody>
@@ -32,15 +32,15 @@
       <tbody>
         <tr>
           <th class="table-active">送料</th>
-          <td><%= @shipping_cost %>円</td>
+          <td><%= @shipping_cost %></td>
         </tr>
         <tr>
           <th class="table-active">商品合計</th>
-          <td><%= @total.to_s(:delimited) %>円</td>
+          <td><%= @total.to_s(:delimited) %></td>
         </tr>
         <tr>
           <th class="table-active">請求金額</td>
-          <td><%= (@shipping_cost + @total).to_s(:delimited) %>円</td>
+          <td><%= (@shipping_cost + @total).to_s(:delimited) %></td>
         </tr>
       </tbody>
     </table>
