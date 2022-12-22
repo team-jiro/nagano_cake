@@ -1,6 +1,5 @@
 class Public::ItemsController < ApplicationController
-  before_action :authenticate_customer!
-  
+
   def index
     @items = Item.all
   end
@@ -9,5 +8,5 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
   end
-  
+
 end
