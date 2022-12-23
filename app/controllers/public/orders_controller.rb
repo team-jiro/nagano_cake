@@ -2,8 +2,15 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
 
   def new
-    @order = Order.new
+    cart_items = CartItem.where(customer_id: current_customer.id)
+    
+    if cart_items.count == 0
+      redirect_to cart_items_path
+    else
+      @order = Order.new
+    end
   end
+  
   def confirm
     @cart_items = CartItem.all
     @shipping_cost = 800

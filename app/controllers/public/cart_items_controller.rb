@@ -2,7 +2,7 @@ class Public::CartItemsController < ApplicationController
  before_action :authenticate_customer!
 
   def index
-    @cart_items = CartItem.where(customer_id:current_customer)
+    @cart_items = CartItem.where(customer_id: current_customer.id)
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
   end
 
@@ -21,6 +21,7 @@ class Public::CartItemsController < ApplicationController
         @cart_item = CartItem.new
         render items_path #商品一覧へ遷移
       end
+      
   end
 
   def update
