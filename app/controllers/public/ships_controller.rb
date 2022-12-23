@@ -11,7 +11,7 @@ class Public::ShipsController < ApplicationController
     @ship.customer_id = current_customer.id
     if @ship.update(ship_params)
       flash[:notice] = "配送先が新規登録されました。"
-      redirect_to customers_path(current_customer)
+      redirect_to ships_path
     else
       flash[:alert] = "配送先の新規登録に失敗しました。"
       @ships = current_customer.ships
