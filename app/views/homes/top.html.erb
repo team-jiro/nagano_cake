@@ -1,6 +1,6 @@
-<div class="row mb-5">
+<div class="row mb-5 shadow rounded-pill bg-light">
   <span>
-    <h2>ようこそ、ながのCAKE <i class="fas fa-utensils"></i> へ！</h2>
+    <h1 style="font-style: oblique; font-family: fantasy, cursive, serif, Times; text-shadow:2px 2px 0 gray;">Welcome to Nagano Cake !</h1>
     <p class="ml-5 my-3">
       このサイトは、ケーキ販売のECサイトになります。<br>
       会員でない方も商品の閲覧はできますが、<br>
@@ -14,21 +14,24 @@
 
 <!--Bootstrapの「カード」を使用-->
 <!--https://getbootstrap.jp/docs/4.5/components/card/#card-styles-->
-<div class="row">
-    <% @new_4_items.each do |item| %>
-      <%= link_to item_path(item), class: "col" do %>
-        <div class="card shadow">
-          <%= image_tag item.get_image, size: "200x100", class: "bd-placeholder-img card-img-top"  %>
-          <div class="card-body text-dark">
-            <h5 class="card-title"><%= item.name %></h5>
-            <!--<p class="card-text"></p>-->
+<div class="container">
+  <div class="card-deck p-0">
+    <div class="row m-0" style="width: 100%;">
+        <% @new_4_items.each do |item| %>
+          <div class="col-lg-3 col-md-6 mb-5">
+            <%= link_to item_path(item) do %>
+              <div class="card shadow">
+                <%= image_tag item.get_image, class: "bd-placeholder-img card-img-top"  %>
+                <div class="card-body text-dark">
+                  <h5 class="card-title"><%= item.name %></h5>
+                  <p class="card-text">¥ <%= item.taxin_price.to_s(:delimited) %>（税込）</p>
+                </div>
+              </div>
+            <% end %>
           </div>
-          <div class="card-footer">
-            <small class="text-muted">¥ <%= item.taxin_price.to_s(:delimited) %>（税込）</small>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
+        <% end %>
+    </div>
+  </div>
 </div>
 
 <div class="row my-4 pr-3">
