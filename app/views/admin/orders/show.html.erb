@@ -9,7 +9,7 @@
     <p class="font-weight-bold">購入者</p>
   </div>
   <div class="col-md-6">
-    <ins><%= @order.customer.full_name %></ins>
+    <p><%= link_to @order.customer.full_name, admin_customer_path(@customer.id) %></p>
   </div>
 </div>
 

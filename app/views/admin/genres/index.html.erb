@@ -2,7 +2,7 @@
   <%= form_with model: @genre, url: admin_genres_path do |f| %>
     <div class="form-group my-5">ジャンル名
       <a class="pl-md-4"><%= f.text_field :name, placeholder:"ジャンル名" %></a>
-      <a class="pl-md-4"><%= f.submit '新規登録', class: "btn btn-info btn-sm" %></a>
+      <a class="pl-md-4"><%= f.submit '新規登録', class: "btn btn-success btn-sm" %></a>
     </div>
   <% end %>
   

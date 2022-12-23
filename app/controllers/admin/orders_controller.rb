@@ -8,6 +8,7 @@ class Admin::OrdersController < ApplicationController
     @order_items.each do |order_item|
       @total += order_item.tax_included_price * order_item.amount
     end
+    @customer = @order.customer
   end
 
   def update
