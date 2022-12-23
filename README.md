@@ -3,9 +3,7 @@
 ## 概要
 長野県にある小さな洋菓子店「ながのCAKE」の商品を通販するためのECサイトを運用するためのアプリケーションです。
 
-## 運用イメージ
-ここにスクショ入れる
-<!--<img width="912" alt="" src="">-->
+<img width="912" alt="" src="https://user-images.githubusercontent.com/114894082/209298422-2cae3e74-843d-430e-87e4-e41f0bba04ba.png">
 
 ## 機能一覧
 
