@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   root to: "homes#top"
   get "/about" => "homes#about", as: "about"
+  # 退会確認画面
+  get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+  # 論理削除用のルーティング
+  patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
 
   # 顧客側
   scope module: :public do
@@ -54,3 +58,4 @@ Rails.application.routes.draw do
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+
