@@ -1,13 +1,13 @@
 <header class="shadow sticky-top bg-light pb-md-2">
   <nav class="navbar navbar-expand-md navbar-light py-0">
-    <a class="navbar-brand font-weight-normal" href="/">Nagano Cake <i class="fas fa-utensils"></i></a>
+    <a class="navbar-brand font-weight-normal" href="/"><img src="/assets/logo.png" alt=""></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse py-2" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
-          <p class="my-auto">ようこそ、<%= current_customer.last_name %>さん！</p>
+          <p class="my-auto mr-2">ようこそ、<%= current_customer.last_name %>さん！</p>
           <li class="nav-item my-auto mr-1">
             <%= link_to 'マイページ', customers_path, method: :get, class: 'nav-link text-secondary border rounded' %>
           </li>
@@ -21,7 +21,7 @@
             <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'nav-link text-secondary border rounded' %>
           </li>
         <% elsif admin_signed_in? %>
-          <p class="my-auto">管理者ログイン中</p>
+          <p class="my-auto mr-2">管理者ログイン中</p>
           <li class="nav-item my-auto mr-1">
             <%= link_to '商品一覧', admin_items_path, method: :get, class: 'nav-link text-secondary border rounded' %>
           </li>
@@ -53,8 +53,6 @@
         <% end %>
       </ul>
     </div>
-  </nav>
-  <div class="row m-0">
     <form class="form-inline ml-auto mr-4">
       <div class="input-group">
         <input type="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
@@ -63,5 +61,5 @@
         </div>
       </div>
     </form>
-  </div>
+  </nav>
 </header>
