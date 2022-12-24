@@ -1,0 +1,18 @@
+<h1>“<%= @word %>”の検索結果<i class="fas fa-search"></i>：<%= @items.count %>件</h1>
+<table class="table table-hover table-inverse mt-4">
+  <% @items.each do |item| %>
+    <tr class="container">
+        <td>
+          <%= link_to item_path(item) do %>
+            <div class="row text-dark text-nowrap">
+              <div class="col">
+                <%= image_tag item.get_image, size: "50x50", class: "shadow rounded" %>
+                <%= item.name %>
+              </div>
+              <div class="col-md-3 pt-3 ml-auto text-right">¥ <%= item.taxin_price.to_s(:delimited) %>（税込）</div>
+            </div>
+          <% end %>
+        </td>
+    </tr>
+  <% end %>
+</table>
