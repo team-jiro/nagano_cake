@@ -1,5 +1,6 @@
 class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
+  
   def new
     @item = Item.new
     @items = Item.all
@@ -38,6 +39,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   private
+  
   def item_params
     params.require(:item).permit(:name, :explanation, :price, :image, :genre_id, :is_active)
   end
