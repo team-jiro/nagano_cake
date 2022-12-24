@@ -1,0 +1,85 @@
+<h4><%= @customer.full_name %>さんの会員情報編集</h4>
+    
+  <div class="col-md-11 offset-md-1">
+  <%= form_with model: @customer, url: admin_customer_path do |f| %>
+    <table class="table table-borderless">
+      <tr>
+        <th class="w-25 font-weight-normal">会員ID</th>
+        <td><%= @customer.id %></td>
+      </tr>
+      <tr>
+        <th class="w-25 font-weight-normal">
+          <label for="inputName">氏名</label>
+        </th>
+        <td class="form-inline">
+          <%= f.text_field :last_name, autofocus: true, id:"inputLastName", style:"width:30%", class:"form-control mr-md-4" %>
+          <%= f.text_field :first_name, id:"inputFirstName", style:"width:30%", class:"form-control" %>
+        </td>
+      </tr>
+      <tr>
+        <th class="w-25 font-weight-normal">
+          <label for="inputName">フリガナ</label>
+        </th>
+        <td class="form-inline">
+          <%= f.text_field :last_name_kana, id:"inputLastNameKana", style:"width:30%", class:"form-control mr-md-4" %>
+          <%= f.text_field :first_name_kana, id:"inputFirstNameKana", style:"width:30%", class:"form-control" %>
+        </td>
+      </tr>
+      <tr>
+        <th class="w-25 font-weight-normal">
+          <label for="inputPostCode">郵便番号</label>
+        </th>
+        <td>
+          <%= f.text_field :post_code, id:"inputPostCode", style:"width:30%", class:"form-control" %>
+        </td>
+      </tr>
+      <tr>
+        <th class="w-25 font-weight-normal">
+          <label for="inputAddress">住所</label>
+        </th>
+        <td>
+          <%= f.text_field :address, id:"inputAddress", style:"width:30%", class:"form-control" %>
+        </td>
+      </tr>
+      <tr>
+        <th class="w-25 font-weight-normal">
+          <label for="inputPhoneNumber">電話番号</label>
+        </th>
+        <td>
+          <%= f.text_field :phone_number, id:"inputPhoneNumber", style:"width:30%", class:"form-control" %>
+        </td>
+      </tr>
+      <tr>
+        <th class="w-25 font-weight-normal">
+          <label for="inputEmail">メールアドレス</label>
+        </th>
+        <td>
+          <%= f.text_field :email, id:"inputEmail", style:"width:30%", class:"form-control" %>
+        </td>
+      </tr>
+      <tr>
+        <th class="w-25 font-weight-normal">
+          <label for="inputIsDeleted">会員ステータス</label>
+        </th>
+        <td>
+          <a class="mr-md-4">
+            <%= f.radio_button :is_deleted, :false %>
+            <%= f.label :is_deleted, "有効", class:"text text-success" %>
+          </a>
+          <a>
+            <%= f.radio_button :is_deleted, :true %>
+            <%= f.label :is_deleted, "退会", class:"text-secondary" %>
+          </a>
+        </td>
+      </tr>
+      <tr>
+        <th class="w-25"></th>
+        <td><%= f.submit "変更を保存", class: "btn btn-success" %></td>
+      </tr>
+    </table>
+  <% end %>
+  </div>
+
+
+
+  

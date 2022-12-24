@@ -1,0 +1,28 @@
+<h4>会員一覧</h4>
+  <table class="table col-md-10 offset-md-1 table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer.id %></td>
+          <td><%= link_to customer.full_name, admin_customer_path(customer.id) %></td>
+          <td><%= customer.email %></td>
+          <td>
+            <% if customer.is_deleted %>
+              <strong class="text-secondary">退会</strong>
+            <% else %>
+              <strong class="text-success">有効</strong>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

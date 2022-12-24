@@ -1,0 +1,39 @@
+<div class="row mb-5 shadow rounded-pill bg-light">
+  <span>
+    <h1 style="font-style: oblique; font-family: fantasy, cursive, serif, Times; text-shadow:2px 2px 0 gray;">Welcome to Nagano Cake !</h1>
+    <p class="ml-5 my-3">
+      このサイトは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品の閲覧はできますが、<br>
+      購入には会員登録が必要になります。
+    </p>
+  </span>
+</div>
+<div class="row mb-3">
+  <h2>新着商品</h2>
+</div>
+
+<!--Bootstrapの「カード」を使用-->
+<!--https://getbootstrap.jp/docs/4.5/components/card/#card-styles-->
+<div class="container">
+  <div class="card-deck p-0">
+    <div class="row m-0" style="width: 100%;">
+        <% @new_4_items.each do |item| %>
+          <div class="col-lg-3 col-md-6 mb-5">
+            <%= link_to item_path(item) do %>
+              <div class="card shadow">
+                <%= image_tag item.get_image, class: "bd-placeholder-img card-img-top"  %>
+                <div class="card-body text-dark">
+                  <h5 class="card-title"><%= item.name %></h5>
+                  <p class="card-text">¥ <%= item.taxin_price.to_s(:delimited) %>（税込）</p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row my-4 pr-3">
+  <%= link_to '全ての商品を見る >', items_path, class: "ml-auto" %>
+</div>

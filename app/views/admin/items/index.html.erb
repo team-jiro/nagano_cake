@@ -1,0 +1,37 @@
+<div class="container mx-auto">
+  <div class="row">
+    <div class="col">
+      <h3>商品一覧</h3>
+    </div>
+    <div class="col-ml-auto">
+      <%= link_to new_admin_item_path do %>
+        <i class="fas fa-plus-circle fa-3x"></i>
+      <% end %>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= link_to item.name, admin_item_path(item.id) %></td>
+          <td><%= item.price %></td>
+          <td><%= item.genre.name %></td>
+          <td><%= item.is_active ? "販売中" : "販売停止中" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <!--ページング記載-->
+</div>

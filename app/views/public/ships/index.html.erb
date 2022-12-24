@@ -1,0 +1,50 @@
+<h3 class="row p-0 text-nowrap">配送先登録 / 一覧  <i class="fas fa-shipping-fast"></i></h3>
+
+<%= form_with model: @ship do |f| %>
+  <div>
+    <%= render "public/shared/error_messages", resource: @ship %>
+  </div>
+  <table class="table table-borderless table-hover bg-light shadow">
+    <tr>
+      <th class="col-md-2 pt-3 text-nowrap">郵便番号(ハイフンなし)</th>
+      <td class="col-md-3"><%= f.text_field :post_code, placeholder: "0000000", class: 'form-control' %></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th class="pt-3 text-nowrap">住所</th>
+      <td colspan="2"><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: 'form-control' %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th class="pt-3 text-nowrap">宛名</th>
+      <td><%= f.text_field :name, placeholder: "令和道夫", class: 'form-control' %></td>
+      <td></td>
+      <td><%= f.submit "新規登録" , class: 'btn btn-success' %></td>
+    </tr>
+  </table>
+<% end %>
+
+<table class="table table-bordered table-hover shadow">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">郵便番号</th>
+      <th scope="col">住所</th>
+      <th scope="col">宛名</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ships.each do |ship| %>
+      <tr>
+        <td class="pt-3 text-nowrap"><%= ship.post_code %></td>
+        <td class="pt-3 text-nowrap"><%= ship.address %></td>
+        <td class="pt-3 text-nowrap"><%= ship.name %></td>
+        <td class="col-md-3">
+          <%= link_to '編集する', edit_ship_path(ship), class: "btn btn-success" %>
+          <%= link_to '削除する', ship_path(ship), method: :delete, data: { confirm: "#{ship.name}さんの配送先を削除してよろしいですか？" }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

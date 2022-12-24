@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="font-weight-bold">商品一覧（ 全<%= @items.count %>件 ）</h3>
+    
+      <% @items.each do |item| %>
+        <div class="m-md-4 d-inline-block">
+          <p class="mt-md-2">
+            <%= link_to item_path(item.id) do %>
+            <%= image_tag item.get_image, size: '300x200' %>
+            <% end %>
+          </p>
+          <strong><%= item.name %></strong>
+          <p class="mt-md-2">¥ <%= item.taxin_price.to_s(:delimited) %>（税込）</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%#= paginate @items %>

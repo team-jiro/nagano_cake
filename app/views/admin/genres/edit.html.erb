@@ -1,0 +1,8 @@
+<h4>ジャンル編集</h4>
+  <%= form_with model: @genre, url: admin_genre_path do |f| %>
+  <div class="form-group my-5">
+    <label for="inputName">ジャンル名</label>
+      <a class="pl-md-4"><%= f.text_field :name, autofocus: true, id:"inputName" %></a>
+      <a class="pl-md-4"><%= f.submit '変更を保存', class:"btn btn-success btn-sm" %></a>
+  </div>
+  <% end %>

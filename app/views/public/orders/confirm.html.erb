@@ -1,0 +1,74 @@
+<h3 class="mb-md-3">注文情報確認</h3>
+<div class="row">
+  <div class="col-md-8 mb-md-5">
+    <table class="table table-bordered">
+      <thead class="table-active">
+        <tr>
+          <th scope="col" style="width: 52%">商品名</th>
+          <th scope="col" style="width: 18%">単価（税込）</th>
+          <th scope="col" style="width: 14%">数量</th>
+          <th scope="col" style="width: 16%">小計</th>
+        </tr>
+      </thead>
+      <!--注文した商品を一覧表示-->
+      <tbody>
+        <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td>
+            <%= image_tag cart_item.item.get_image, size: '70x50' %>
+            <%= cart_item.item.name %>
+          </td>
+          <td class="align-middle"><%= cart_item.item.taxin_price.to_s(:delimited) %></td>
+          <td class="align-middle"><%= cart_item.amount %></td>
+          <td class="align-middle"><%= cart_item.sum_of_price.to_s(:delimited) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <!--送料、商品合計金額、請求金額表示-->
+  <div class="col-md-4">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th class="table-active">送料</th>
+          <td><%= @shipping_cost %></td>
+        </tr>
+        <tr>
+          <th class="table-active">商品合計</th>
+          <td><%= @total.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <th class="table-active">請求金額</td>
+          <td><%= (@shipping_cost + @total).to_s(:delimited) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <h5 class="font-weight-bold">支払方法</h5>
+    <span class="pl-md-4 pb-md-4"><%= @order.payment_method_i18n %></span>
+</div>
+
+<div class="row">
+  <h5 class="font-weight-bold">お届け先</h5>
+    <div class="pl-md-4">
+      〒<%= @order.shipping_postal_code %>
+      <span class="pl-md-2"><%= @order.shipping_address %></span></br>
+      <span><%= @order.shipping_name %></span>
+    </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3 offset-md-5">
+  <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
+    <%= f.hidden_field :shipping_address %>
+    <%= f.hidden_field :shipping_postal_code %>
+    <%= f.hidden_field :shipping_name %>
+    <%= f.hidden_field :billing_amount, :value =>@shipping_cost + @total %>
+    <%= f.submit "注文を確定する", class: 'btn btn-success btn-lg' %>
+  <% end %>
+  </div>
+</div>

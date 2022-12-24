@@ -1,0 +1,26 @@
+<h3 class="row p-0 text-nowrap">配送先編集  <i class="fas fa-shipping-fast"></i></h3>
+
+<%= form_with model: @ship do |f| %>
+  <div class="col">
+    <%= render "public/shared/error_messages", resource: @ship %>
+  </div>
+  <table class="table table-borderless table-hover bg-light shadow">
+    <tr>
+      <th class="col-md-2 pt-3 text-nowrap">郵便番号(ハイフンなし)</th>
+      <td class="col-md-3"><%= f.text_field :post_code, placeholder: "0000000", class: 'form-control' %></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th class="pt-3 text-nowrap">住所</th>
+      <td colspan="2"><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: 'form-control' %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th class="pt-3 text-nowrap">宛名</th>
+      <td><%= f.text_field :name, placeholder: "令和道夫", class: 'form-control' %></td>
+      <td></td>
+      <td><%= f.submit "変更内容を保存", class: 'btn btn-success' %></td>
+    </tr>
+  </table>
+<% end %>

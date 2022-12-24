@@ -1,0 +1,28 @@
+<main>
+  <div class="container my-5 mx-6-md pb-5">
+    <h4>注文履歴一覧</h4>
+      <table class="table col-md-10 offset-md-1 table-hover">
+        <thead class="thead-light">
+          <tr>
+          <th>購入日時</th>
+          <th>購入者</th>
+          <th>注文個数</th>
+          <th>注文ステータス</th>
+          </tr>
+        </thead>
+
+       <tbody>
+         <% @orders.each do |order| %>
+           <tr>
+           <td><%= link_to admin_order_path(order) do %>
+           <%= order.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+           <% end %>
+           <td><%= order.customer.full_name %></td>
+           <td><%= order.order_items.sum(:amount) %></td>
+           <td><%= order.status_i18n %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+</main>
